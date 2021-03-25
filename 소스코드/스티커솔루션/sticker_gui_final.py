@@ -22,8 +22,8 @@ LIGHTER_COUNT   = 10
 MAX_FRAME_COUNT = 1
 LOWER_BOUNDARY_BLUE = np.array([95, 160, 160])      # HSV format
 UPPER_BOUNDARY_BLUE = np.array([110, 255, 255])     # Hue, Saturation, Value
-TEMPLATE_IMAGE_ACE = cv2.imread("./new_template/ace.jpg")
-TEMPLATE_IMAGE_BTN = cv2.imread("./new_template/btn.jpg")
+TEMPLATE_IMAGE_ACE = cv2.imread("./template_img_ace.jpg")
+TEMPLATE_IMAGE_BTN = cv2.imread("./template_img_btn.jpg")
 THERMAL_PATH = '/sys/devices/virtual/thermal/thermal_zone0/temp'
 TEMPLATE_MATCHER = cv2.cuda.createTemplateMatching(cv2.CV_8UC1, cv2.TM_SQDIFF_NORMED)
 
@@ -160,7 +160,7 @@ class Sticker:
         offset_y = int(round(self.manual_box_height) * 0.05)
         template_img = cv2.medianBlur(template_img, 3)
         template_img = template_img[offset_y : -offset_y, offset_x : -offset_x]
-        save_location = "./new_template/ace.jpg" if self.apply_btn_push_cnt == 1 else "./new_template/btn.jpg"
+        save_location = "./template_img_ace.jpg" if self.apply_btn_push_cnt == 1 else "./template_img_btn.jpg"
         cv2.imwrite(save_location, template_img)
 
     def get_image(self):
