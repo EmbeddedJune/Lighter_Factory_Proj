@@ -259,7 +259,8 @@ class Sticker:
                 return
             
         err_string = "불량품 세트"
-        self.sys_result_label.setText(err_string if err_count > 1 else "정상 세트 [BM2]")
+        self.sys_result_label.setText("불량품 세트" if self.lighter_error_flag.count(True) > 1 
+                                      else "정상 세트 [BM2]")
         
     def quit_program(self):
         self.camera.stop()
